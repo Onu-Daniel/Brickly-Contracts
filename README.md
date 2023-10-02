@@ -1,4 +1,4 @@
-# Real Estate Tokenization Smart Contract
+# Real Estate Fractioning Smart Contract
 
 ## Overview
 
