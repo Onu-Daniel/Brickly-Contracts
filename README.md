@@ -1,7 +1,3 @@
-Thank you for providing the updated project structure. Here's the adjusted README to reflect the new structure:
-
----
-
 # Real Estate Tokenization Smart Contract
 
 ## Overview
