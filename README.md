@@ -29,13 +29,13 @@ The Real Estate Tokenization Smart Contract is a decentralized application (DApp
 1. Clone this repository:
 
    ```bash
-   git clone https://github.com/Onu-Daniel/RealEstateX.git
+   git clone https://github.com/Onu-Daniel/Brickly-Contracts.git
    ```
 
 2. Navigate to the project directory:
 
    ```bash
-   cd realEstate
+   cd Brickly-Contracts
    ```
 
 3. Install project dependencies:
@@ -56,5 +56,10 @@ The Real Estate Tokenization Smart Contract is a decentralized application (DApp
 
 The contract is organized into multiple parts, each in a separate Solidity file within the `contracts/` directory:
 
-- `RealEstateTokenProxy.sol`: Proxy contract for upgradability mechanisms.
-- `RealEstateTokenImplementation.sol`: Implementation contract containing the main contract logic.
+- `Brickly.sol`:
+This is the contract that tokenizes proprties by deploying an NFT which is a new instance of the `Asset` contract.
+This contract also allows the owner of a tokenized asset to list the units for sale
+
+- `Asset.sol`:
+This is the NFT contract. A new NFT is created each time to represent a unique property.
+A property can have different units which is represented with a unique `tokenId`.
