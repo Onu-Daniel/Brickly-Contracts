@@ -75,8 +75,14 @@ contract Brickly is Ownable {
 
     mapping (uint => uint) listingIndex;
 
+    address feeReceiver = msg.sender;
+
     // Constructor function to initialize the contract
-    constructor() {}
+    constructor() {
+        feeReceiver = msg.sender; //The deployer of the contract will get the NFTto widthraw the earned fees
+        Register sfsContract = Register(0xBBd707815a7F7eb6897C7686274AFabd7B579Ff6); // This address is the address of the SFS contract
+        sfsContract.register(msg.sender); //Registers this contract and assigns the NFT to the owner of this contract
+    }
 
     // Function to tokenize a new property
     function tokenizeProperty(

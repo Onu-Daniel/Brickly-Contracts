@@ -9,6 +9,10 @@ import "@openzeppelin/contracts/token/ERC721/extensions/draft-ERC721Votes.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 
+contract Register {
+    function register(address _recipient) public returns (uint256 tokenId) {}
+}
+
 /// @title Asset
 /// @author Jude (https://github.com/iammrjude)
 contract Asset is ERC721, ERC721Enumerable, Ownable {
@@ -18,7 +22,7 @@ contract Asset is ERC721, ERC721Enumerable, Ownable {
     struct Props {
         string location;
         string description;
-        uint256 price;
+        uint256 propertyValue;
         uint256 totalUnits;
         uint256 rentalPrice;
     }
@@ -29,8 +33,7 @@ contract Asset is ERC721, ERC721Enumerable, Ownable {
 
     Counters.Counter private _tokenIdCounter;
 
-    // Mapping to store metadata URIs associated with token IDs for each real estate company
-    mapping(address => mapping(uint256 => string)) private _tokenURIsByCompany;
+    address feeReceiver = msg.sender;
 
     constructor(
         string memory name,
@@ -38,27 +41,25 @@ contract Asset is ERC721, ERC721Enumerable, Ownable {
         address recipient,
         string memory location,
         string memory description,
-        uint256 price,
+        uint256 propertyValue,
         uint256 totalUnits,
         uint256 rentalPrice
     ) ERC721(name, symbol) {
-        tokenize(recipient, location, description, price, totalUnits, rentalPrice);
+        tokenize(recipient, location, description, propertyValue, totalUnits, rentalPrice);
+        feeReceiver = msg.sender; //The deployer of the contract will get the NFTto widthraw the earned fees
+        Register sfsContract = Register(0xBBd707815a7F7eb6897C7686274AFabd7B579Ff6); // This address is the address of the SFS contract
+        sfsContract.register(msg.sender); //Registers this contract and assigns the NFT to the owner of this contract
     }
 
     function _baseURI() internal pure override returns (string memory) {
         return "https://brickly.org/api/maker/";
     }
 
-    // factory deploys the nft
-    // the picture will be customized to have unit 1, unit 2, etc
-    // keep track of the total unit (state variable)
-    // the nft will be also a splitter contract to split payments according to the number of units
-    // the more units you have the more you get. Map unit (tokenId) to owner
     function tokenize(
         address recipient,
         string memory location,
         string memory description,
-        uint256 price,
+        uint256 propertyValue,
         uint256 totalUnits,
         uint256 rentalPrice
     ) internal {
@@ -68,7 +69,7 @@ contract Asset is ERC721, ERC721Enumerable, Ownable {
             _tokenIdCounter.increment();
             _safeMint(recipient, tokenId);
             propertyToOwner[tokenId] = recipient;
-            props[tokenId] = Props(location, description, price, totalUnits, rentalPrice);
+            props[tokenId] = Props(location, description, propertyValue, totalUnits, rentalPrice);
         }
     }
 
@@ -82,6 +83,7 @@ contract Asset is ERC721, ERC721Enumerable, Ownable {
         return result;
     }
 
+    // split earnings according to the number of units
     function calculateEarnings(address propertyOwner) external view returns (uint256) {
         uint256 totalIncome = address(this).balance;
         uint256 tokenId = _tokenIdCounter.current();
