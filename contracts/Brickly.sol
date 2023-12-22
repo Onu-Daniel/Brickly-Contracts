@@ -1,14 +1,15 @@
-// SPDX-License-Identifier: SEE LICENSE IN LICENSE
-pragma solidity ^0.8.0;
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.21;
 
-import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/token/ERC721/IERC721.sol";
+import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
 import "./Asset.sol";
 
 /// @title Brickly - A decentralized real estate marketplace
 /// @author Jude (https://github.com/iammrjude)
 /// @dev This smart contract enables the creation, buying, selling, and renting of real estate properties as NFTs.
-contract Brickly is Ownable {
+contract Brickly is Initializable, UUPSUpgradeable, OwnableUpgradeable {
     // Define a struct to represent a real estate property
     struct Property {
         string location;
@@ -83,9 +84,12 @@ contract Brickly is Ownable {
 
     mapping(uint => uint) listingIndex;
 
-    address feeReceiver = msg.sender;
+    // Address to receive fees from transactions
+    address feeReceiver;
 
-    constructor() {
+    function initialize() public initializer onlyProxy {
+        __Ownable_init();
+        __UUPSUpgradeable_init();
         feeReceiver = msg.sender; //The deployer of the contract will get the NFTto widthraw the earned fees
         Register sfsContract = Register(
             0xBBd707815a7F7eb6897C7686274AFabd7B579Ff6
@@ -290,4 +294,8 @@ contract Brickly is Ownable {
     }
 
     function payRent() external payable {}
+
+    function _authorizeUpgrade(
+        address newImplementation
+    ) internal override onlyOwner {}
 }

@@ -41,7 +41,7 @@ The Real Estate Tokenization Smart Contract is a decentralized application (DApp
 3. Install project dependencies:
 
    ```bash
-   npm install
+   yarn install
    ```
 
 ### Usage
@@ -49,7 +49,13 @@ The Real Estate Tokenization Smart Contract is a decentralized application (DApp
 1. Compile the smart contract:
 
    ```bash
-   npx hardhat compile
+   yarn build
+   ```
+
+2. Deploy to Mode Testnet:
+
+   ```bash
+   yarn modeTestnet:deploy
    ```
 
 ## Contract Architecture

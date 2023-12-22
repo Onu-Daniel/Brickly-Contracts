@@ -1,0 +1,204 @@
+{
+  "manifestVersion": "3.2",
+  "proxies": [
+    {
+      "address": "0xE63bac07953C900764B81E4dd8E4b9781EAF23ee",
+      "txHash": "0x2ceac005c5c16c63435977e32e4c64ea655d78a218f50e1e13e2cd46be20788c",
+      "kind": "uups"
+    }
+  ],
+  "impls": {
+    "ad57ad1b4783bab2fef1f3731271c0d10008ce7c6d810712709fbf13c2479d3a": {
+      "address": "0x7b17270209a47fB90D7B4bf5b8b7ae9bEE60e77b",
+      "txHash": "0x5b5d3d6b4630fa9e315785ca0f51909aaf044df641e2ccb6ec94c3ab3b2e98a6",
+      "layout": {
+        "storage": [
+          {
+            "contract": "Initializable",
+            "label": "_initialized",
+            "type": "t_bool",
+            "src": "@openzeppelin\\contracts-upgradeable\\proxy\\utils\\Initializable.sol:39"
+          },
+          {
+            "contract": "Initializable",
+            "label": "_initializing",
+            "type": "t_bool",
+            "src": "@openzeppelin\\contracts-upgradeable\\proxy\\utils\\Initializable.sol:44"
+          },
+          {
+            "contract": "ERC1967UpgradeUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "@openzeppelin\\contracts-upgradeable\\proxy\\ERC1967\\ERC1967UpgradeUpgradeable.sol:211"
+          },
+          {
+            "contract": "UUPSUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "@openzeppelin\\contracts-upgradeable\\proxy\\utils\\UUPSUpgradeable.sol:107"
+          },
+          {
+            "contract": "ContextUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)50_storage",
+            "src": "@openzeppelin\\contracts-upgradeable\\utils\\ContextUpgradeable.sol:36"
+          },
+          {
+            "contract": "OwnableUpgradeable",
+            "label": "_owner",
+            "type": "t_address",
+            "src": "@openzeppelin\\contracts-upgradeable\\access\\OwnableUpgradeable.sol:22"
+          },
+          {
+            "contract": "OwnableUpgradeable",
+            "label": "__gap",
+            "type": "t_array(t_uint256)49_storage",
+            "src": "@openzeppelin\\contracts-upgradeable\\access\\OwnableUpgradeable.sol:87"
+          },
+          {
+            "contract": "Brickly",
+            "label": "properties",
+            "type": "t_array(t_struct(Property)5717_storage)dyn_storage",
+            "src": "contracts\\Brickly.sol:24"
+          },
+          {
+            "contract": "Brickly",
+            "label": "listings",
+            "type": "t_array(t_struct(Listing)5730_storage)dyn_storage",
+            "src": "contracts\\Brickly.sol:35"
+          },
+          {
+            "contract": "Brickly",
+            "label": "propertyToOwner",
+            "type": "t_mapping(t_uint256,t_address)",
+            "src": "contracts\\Brickly.sol:38"
+          },
+          {
+            "contract": "Brickly",
+            "label": "rentalIncome",
+            "type": "t_uint256",
+            "src": "contracts\\Brickly.sol:74"
+          },
+          {
+            "contract": "Brickly",
+            "label": "userOwnedUnits",
+            "type": "t_mapping(t_address,t_uint256)",
+            "src": "contracts\\Brickly.sol:77"
+          },
+          {
+            "contract": "Brickly",
+            "label": "_tokenURIsByCompany",
+            "type": "t_mapping(t_address,t_mapping(t_uint256,t_string_storage))",
+            "src": "contracts\\Brickly.sol:80"
+          },
+          {
+            "contract": "Brickly",
+            "label": "listingIndex",
+            "type": "t_mapping(t_uint256,t_uint256)",
+            "src": "contracts\\Brickly.sol:85"
+          },
+          {
+            "contract": "Brickly",
+            "label": "feeReceiver",
+            "type": "t_address",
+            "src": "contracts\\Brickly.sol:88"
+          }
+        ],
+        "types": {
+          "t_array(t_struct(Property)5717_storage)dyn_storage": {
+            "label": "struct Brickly.Property[]"
+          },
+          "t_struct(Property)5717_storage": {
+            "label": "struct Brickly.Property",
+            "members": [
+              {
+                "label": "location",
+                "type": "t_string_storage"
+              },
+              {
+                "label": "description",
+                "type": "t_string_storage"
+              },
+              {
+                "label": "propertyValue",
+                "type": "t_uint256"
+              },
+              {
+                "label": "totalUnits",
+                "type": "t_uint256"
+              },
+              {
+                "label": "rentalPrice",
+                "type": "t_uint256"
+              },
+              {
+                "label": "nft",
+                "type": "t_contract(IERC721)2988"
+              }
+            ]
+          },
+          "t_string_storage": {
+            "label": "string"
+          },
+          "t_uint256": {
+            "label": "uint256"
+          },
+          "t_contract(IERC721)2988": {
+            "label": "contract IERC721"
+          },
+          "t_array(t_struct(Listing)5730_storage)dyn_storage": {
+            "label": "struct Brickly.Listing[]"
+          },
+          "t_struct(Listing)5730_storage": {
+            "label": "struct Brickly.Listing",
+            "members": [
+              {
+                "label": "tokenId",
+                "type": "t_uint256"
+              },
+              {
+                "label": "seller",
+                "type": "t_address"
+              },
+              {
+                "label": "salePrice",
+                "type": "t_uint256"
+              },
+              {
+                "label": "isActive",
+                "type": "t_bool"
+              }
+            ]
+          },
+          "t_address": {
+            "label": "address"
+          },
+          "t_bool": {
+            "label": "bool"
+          },
+          "t_mapping(t_uint256,t_address)": {
+            "label": "mapping(uint256 => address)"
+          },
+          "t_mapping(t_address,t_uint256)": {
+            "label": "mapping(address => uint256)"
+          },
+          "t_mapping(t_address,t_mapping(t_uint256,t_string_storage))": {
+            "label": "mapping(address => mapping(uint256 => string))"
+          },
+          "t_mapping(t_uint256,t_string_storage)": {
+            "label": "mapping(uint256 => string)"
+          },
+          "t_mapping(t_uint256,t_uint256)": {
+            "label": "mapping(uint256 => uint256)"
+          },
+          "t_array(t_uint256)49_storage": {
+            "label": "uint256[49]"
+          },
+          "t_array(t_uint256)50_storage": {
+            "label": "uint256[50]"
+          }
+        }
+      }
+    }
+  }
+}

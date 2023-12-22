@@ -1,5 +1,5 @@
-// SPDX-License-Identifier: SEE LICENSE IN LICENSE
-pragma solidity ^0.8.0;
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.21;
 
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
@@ -18,7 +18,11 @@ contract Register {
  * @author Jude (https://github.com/iammrjude)
  * @dev ERC721-compliant contract representing real estate properties as NFTs.
  */
-contract Asset is ERC721, ERC721Enumerable, Ownable {
+contract Asset is
+    ERC721,
+    ERC721Enumerable,
+    Ownable
+{
     using Counters for Counters.Counter;
 
     // Define a struct to represent a real estate property
@@ -40,10 +44,10 @@ contract Asset is ERC721, ERC721Enumerable, Ownable {
     Counters.Counter private _tokenIdCounter;
 
     // Address to receive fees from property tokenization
-    address feeReceiver = msg.sender;
+    address feeReceiver;
 
     /**
-     * @dev Constructor function to initialize the Asset contract.
+     * @dev function to initialize the Asset contract.
      * @param name The name of the NFT contract.
      * @param symbol The symbol of the NFT contract.
      * @param recipient The initial owner of the property units.
@@ -158,10 +162,9 @@ contract Asset is ERC721, ERC721Enumerable, Ownable {
     function _beforeTokenTransfer(
         address from,
         address to,
-        uint256 firstTokenId,
-        uint256 batchSize
+        uint256 tokenId
     ) internal override(ERC721, ERC721Enumerable) {
-        super._beforeTokenTransfer(from, to, firstTokenId, batchSize);
+        super._beforeTokenTransfer(from, to, tokenId);
     }
 
     /**
@@ -170,10 +173,9 @@ contract Asset is ERC721, ERC721Enumerable, Ownable {
     function _afterTokenTransfer(
         address from,
         address to,
-        uint256 firstTokenId,
-        uint256 batchSize
+        uint256 tokenId
     ) internal virtual override(ERC721) {
-        super._afterTokenTransfer(from, to, firstTokenId, batchSize);
+        super._afterTokenTransfer(from, to, tokenId);
     }
 
     /**
@@ -181,7 +183,12 @@ contract Asset is ERC721, ERC721Enumerable, Ownable {
      */
     function supportsInterface(
         bytes4 interfaceId
-    ) public view override(ERC721, ERC721Enumerable) returns (bool) {
+    )
+        public
+        view
+        override(ERC721, ERC721Enumerable)
+        returns (bool)
+    {
         return super.supportsInterface(interfaceId);
     }
 }
