@@ -6,7 +6,7 @@ Brickly, is a decentralized real estate marketplace that leverages blockchain te
 
 The Real Estate Tokenization Smart Contract is a decentralized application (DApp) built on the Mode blockchain that enables real estate companies to tokenize properties, allowing users to buy units of these properties as non-fungible tokens (NFTs). These NFTs represent ownership of a portion of the property. The smart contract also handles rental income distribution, unit resale, and token metadata management.
 
-1. Deployed Frontend [dApp](brickly-wheat.vercel.app)
+1. Deployed Frontend [dApp](https://brickly-wheat.vercel.app/)
 2. Frontend Repo [here](https://github.com/Onu-Daniel/brickly.git)
 
 ### Features
@@ -116,3 +116,7 @@ This contract also allows the owner of a tokenized asset to list the units for s
 - `Asset.sol`:
 This is the NFT contract. A new NFT is created each time to represent a unique property.
 A property can have different units which is represented with a unique `tokenId`.
+
+## Deployment
+
+- **Mode Testnet:** [0xE63bac07953C900764B81E4dd8E4b9781EAF23ee](https://sepolia.explorer.mode.network/address/0xE63bac07953C900764B81E4dd8E4b9781EAF23ee)
